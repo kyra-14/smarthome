@@ -1,0 +1,839 @@
+/* ==========================================================================
+   Smart Maket IoT - Dual Layout & Realistic Architectural Maket House
+   ========================================================================== */
+
+:root {
+  --bg-main: #070b14;
+  --bg-card: rgba(15, 23, 42, 0.9);
+  --bg-card-border: rgba(255, 255, 255, 0.08);
+  --primary: #0284c7;
+  --primary-glow: rgba(2, 132, 199, 0.35);
+  --accent-cyan: #38bdf8;
+  --accent-amber: #fbbf24;
+  --accent-emerald: #10b981;
+  --accent-rose: #f43f5e;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-image: 
+    radial-gradient(circle at 10% 10%, rgba(14, 165, 233, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 90%, rgba(99, 102, 241, 0.07) 0%, transparent 40%);
+  overflow-x: hidden;
+}
+
+/* Base App Container */
+.app-container {
+  width: 100%;
+  max-width: 1240px;
+  padding: 18px 20px 80px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+/* Force Mobile Frame Mode (Saat Tombol Mode HP ditekan di Laptop) */
+.app-container.force-mobile {
+  max-width: 480px;
+  padding: 14px 12px 100px 12px;
+}
+
+/* Top Navbar */
+.app-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--bg-card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0284c7, #06b6d4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #fff;
+  box-shadow: 0 4px 14px var(--primary-glow);
+}
+
+.brand-text h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.brand-text p {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Mode Switcher Toggle Pill (Desktop vs HP) */
+.view-mode-pill {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--bg-card-border);
+  border-radius: 20px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.mode-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.mode-btn.active {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 2px 8px var(--primary-glow);
+}
+
+/* Status Badge */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--accent-emerald);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-emerald);
+  animation: pulseDot 1.8s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ==========================================================================
+   DESKTOP 2-COLUMN GRID SYSTEM
+   ========================================================================== */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* Column Wrappers */
+.col-visualizer, .col-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Cards */
+.dash-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--bg-card-border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+/* Quick Bar in Desktop Header or Grid */
+.stat-summary-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.stat-chip {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-card-border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stat-chip i {
+  font-size: 1.3rem;
+  color: var(--accent-amber);
+}
+
+.stat-val {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.stat-lbl {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.btn-open-hp {
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--accent-cyan);
+  border: 1px dashed rgba(56, 189, 248, 0.4);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-open-hp:hover {
+  background: rgba(56, 189, 248, 0.18);
+  border-color: var(--accent-cyan);
+}
+
+/* ==========================================================================
+   ARCHITECTURAL MINIATUR RUMAH (MAKET) STYLING
+   ========================================================================== */
+.miniature-house-svg-wrap {
+  width: 100%;
+  background: #060911;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 10px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 2px 14px rgba(0, 0, 0, 0.6);
+}
+
+/* Room Group Interactive Hover */
+.room-interactive-group {
+  cursor: pointer;
+}
+
+.room-interactive-group:hover .room-floor-base {
+  filter: brightness(1.12);
+}
+
+/* Floor base rect */
+.room-floor-base {
+  transition: all 0.3s ease;
+}
+
+.room-floor-base.glow-active {
+  stroke: #f59e0b !important;
+  stroke-width: 2px !important;
+}
+
+/* Volumetric Radial Light Glow Overlay */
+.room-light-glow {
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.room-light-glow.is-on {
+  opacity: 1;
+}
+
+/* Lamp Fixture & Bulb in Center of Room */
+.lamp-fixture-ring {
+  transition: all 0.3s ease;
+}
+
+.lamp-bulb {
+  transition: all 0.3s ease;
+}
+
+.lamp-bulb.is-on {
+  fill: #fef08a !important;
+  filter: drop-shadow(0 0 10px #facc15) drop-shadow(0 0 20px #eab308);
+}
+
+.lamp-bulb.is-off {
+  fill: #475569 !important;
+}
+
+/* Realistic Furniture & Fixtures in Miniature Maket */
+.mak-bed {
+  fill: #1e293b;
+  stroke: #475569;
+  stroke-width: 1.2;
+}
+
+.mak-pillow {
+  fill: #f1f5f9;
+  stroke: #cbd5e1;
+  stroke-width: 0.8;
+}
+
+.mak-blanket {
+  fill: #3b82f6;
+  opacity: 0.85;
+}
+
+.mak-blanket-alt {
+  fill: #06b6d4;
+  opacity: 0.85;
+}
+
+.mak-sofa {
+  fill: #334155;
+  stroke: #64748b;
+  stroke-width: 1.2;
+}
+
+.mak-cushion {
+  fill: #0284c7;
+  opacity: 0.7;
+}
+
+.mak-table {
+  fill: #1e293b;
+  stroke: #64748b;
+  stroke-width: 1;
+}
+
+.mak-wood-counter {
+  fill: #292524;
+  stroke: #57534e;
+  stroke-width: 1.2;
+}
+
+.mak-sink {
+  fill: #475569;
+  stroke: #94a3b8;
+  stroke-width: 1;
+}
+
+.mak-toilet {
+  fill: #f8fafc;
+  stroke: #94a3b8;
+  stroke-width: 1;
+}
+
+.mak-door-arc {
+  stroke: #38bdf8;
+  stroke-width: 1.2;
+  stroke-dasharray: 3, 2;
+  fill: none;
+  opacity: 0.7;
+}
+
+.mak-door-leaf {
+  stroke: #e2e8f0;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.mak-window {
+  stroke: #38bdf8;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  opacity: 0.85;
+}
+
+/* Master Switches: Nyalakan Semua / Matikan Semua */
+.master-switch-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.btn-master {
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 12px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-master-on {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fde047;
+  border: 1px solid rgba(251, 191, 36, 0.4);
+}
+
+.btn-master-on:hover, .btn-master-on:active {
+  background: #facc15;
+  color: #000;
+  box-shadow: 0 4px 16px rgba(250, 204, 21, 0.3);
+}
+
+.btn-master-off {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  border: 1px solid var(--bg-card-border);
+}
+
+.btn-master-off:hover, .btn-master-off:active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+/* Hardware Pin Table for Desktop View */
+.pin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.pin-table th {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.pin-table td {
+  padding: 7px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.pin-badge {
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--accent-cyan);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.72rem;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* 6 Rooms Control Grid (Touch & Click Cards) */
+.control-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.device-card {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-card-border);
+  border-radius: var(--radius-lg);
+  padding: 13px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.device-card:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+
+.device-card:active {
+  transform: scale(0.98);
+}
+
+.device-card.is-active {
+  background: linear-gradient(145deg, rgba(251, 191, 36, 0.14), rgba(18, 26, 44, 0.95));
+  border-color: rgba(251, 191, 36, 0.45);
+  box-shadow: 0 4px 16px rgba(251, 191, 36, 0.14);
+}
+
+.device-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.device-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  transition: all 0.25s ease;
+}
+
+.device-card.is-active .device-icon-wrap {
+  background: #facc15;
+  color: #000;
+  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.35);
+}
+
+.device-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.device-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.device-pin {
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  font-family: monospace;
+}
+
+/* Toggle Switch */
+.switch-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2px;
+}
+
+.switch-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-dim);
+}
+
+.device-card.is-active .switch-label {
+  color: var(--accent-amber);
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #334155;
+  transition: .3s;
+  border-radius: 34px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+  background-color: #facc15;
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(20px);
+  background-color: #000;
+}
+
+/* Activity Logs List */
+.log-card {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-card-border);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.log-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.76rem;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.log-item:last-child {
+  border-bottom: none;
+}
+
+.log-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+}
+
+/* Modals */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-box {
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+/* Toast */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast {
+  background: #1e293b;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: 10px 20px;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Bottom Navigation (Visible only on mobile/narrow view) */
+.bottom-nav {
+  display: none;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES (VERSI MOBILE HP OTOMATIS SAAT < 992px ATAU FORCE-MOBILE)
+   ========================================================================== */
+@media (max-width: 991px) {
+  .app-container {
+    padding: 14px 12px 90px 12px;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .col-controls {
+    order: 2;
+  }
+
+  .col-visualizer {
+    order: 1;
+  }
+
+  .bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    justify-content: space-around;
+    align-items: center;
+    z-index: 900;
+  }
+
+  .nav-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .nav-tab i {
+    font-size: 1.15rem;
+  }
+
+  .nav-tab.active {
+    color: var(--accent-cyan);
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+/* When Force Mobile is Active on Laptop Screen */
+.app-container.force-mobile .dashboard-grid {
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.app-container.force-mobile .col-controls {
+  order: 2;
+}
+
+.app-container.force-mobile .col-visualizer {
+  order: 1;
+}
+
+.app-container.force-mobile .desktop-only {
+  display: none !important;
+}
+
+.app-container.force-mobile .bottom-nav {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  justify-content: space-around;
+  align-items: center;
+  z-index: 900;
+}

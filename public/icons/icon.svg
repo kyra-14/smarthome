@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="110" fill="url(#bgGrad)"/>
+  <!-- House Contour -->
+  <path d="M256 100 L110 220 L140 220 L140 390 C140 400 148 408 158 408 L354 408 C364 408 372 400 372 390 L372 220 L402 220 Z" fill="none" stroke="url(#accentGrad)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Door -->
+  <rect x="220" y="280" width="72" height="128" rx="10" fill="#38bdf8" opacity="0.3" stroke="#38bdf8" stroke-width="12"/>
+  <circle cx="275" cy="345" r="7" fill="#facc15" />
+  <!-- Smart IoT Signal Rings -->
+  <circle cx="256" cy="180" r="16" fill="#38bdf8" />
+  <path d="M220 155 A 48 48 0 0 1 292 155" fill="none" stroke="#38bdf8" stroke-width="12" stroke-linecap="round"/>
+  <path d="M195 130 A 80 80 0 0 1 317 130" fill="none" stroke="#06b6d4" stroke-width="12" stroke-linecap="round"/>
+  <!-- Glow Dots (Sensors/LEDs) -->
+  <circle cx="170" cy="250" r="12" fill="#facc15" />
+  <circle cx="342" cy="250" r="12" fill="#38bdf8" />
+</svg>
+
